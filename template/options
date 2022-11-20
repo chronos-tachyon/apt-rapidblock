@@ -1,0 +1,6 @@
+verbose
+basedir {basedir}
+outdir {outdir}
+keepunreferencedfiles
+keepunusednewfiles
+ask-passphrase

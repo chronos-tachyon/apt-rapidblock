@@ -1,0 +1,8 @@
+Origin: rapidblock
+Label: rapidblock
+Codename: rapidblock
+Architectures: amd64 arm64
+Components: main
+Description: Public APT repository for RapidBlock
+SignWith: {key_id}
+DebIndices: Packages Release . .gz .bz2 .xz
