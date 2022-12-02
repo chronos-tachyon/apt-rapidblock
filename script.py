@@ -50,7 +50,7 @@ GNUPG_HOME = Path(os.path.expanduser('~/secure/reprepro-gpg-home'))
 GNUPG_KEY = 'FAC9D418F6E454B22FC7ECE0E64E273DA571F3DB'
 
 GITHUB_TOKEN_PATH = Path(os.path.expanduser('~/secure/github-apt-token.pw'))
-GITHUB_TOKEN = open(GITHUB_TOKEN_PATH).readline()
+GITHUB_TOKEN = open(GITHUB_TOKEN_PATH).readline().strip()
 GITHUB_USER = 'chronos-tachyon'
 GITHUB_REPO = 'rapidblock'
 
