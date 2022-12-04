@@ -1,4 +1,0 @@
-# vim:set ft=crontab ts=8 sts=8 sw=8 noet:
-
-# m	h	dom	mon	dow	user		command
-0	*	*	*	*	mastodon	/opt/rapidblock/scripts/cron.sh
