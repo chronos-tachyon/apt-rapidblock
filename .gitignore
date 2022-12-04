@@ -1,6 +1,9 @@
-/build
-/download
-/out
-/publish.sh
-/reprepro
-/venv
+*.pyc
+*.pyo
+.mypy_cache
+build
+download
+out
+publish.sh
+reprepro
+venv

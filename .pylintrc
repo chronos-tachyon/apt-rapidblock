@@ -1,0 +1,8 @@
+[MAIN]
+enable-all-extensions=yes
+
+[REPORTS]
+output-format=colorized
+
+[STRING]
+check-quote-consistency=yes
