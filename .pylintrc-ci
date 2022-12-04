@@ -1,0 +1,9 @@
+[MAIN]
+enable-all-extensions=yes
+
+[REPORTS]
+output-format=parseable
+reports=yes
+
+[STRING]
+check-quote-consistency=yes

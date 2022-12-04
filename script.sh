@@ -1,15 +1,21 @@
 #!/bin/bash
-set -e
+set -euo pipefail
+
+cd "$(dirname "$0")"
+export PATH="$(pwd)/venv/bin:${PATH}"
 
 if [ -z "${NOW:+isset}" ]; then
   sleep $((RANDOM % 3600))
 fi
 
-root="$(cd "$(dirname "$0")" && pwd -P)"
-
-if [ ! -x "${root}/venv/bin/python" ]; then
-  python3 -m venv "${root}/venv"
-  "${root}/venv/bin/pip" install -r "${root}/requirements.txt"
+if [ ! -x venv/bin/python ]; then
+  rm -rf venv
+  python3 -m venv venv
 fi
 
-exec "${root}/venv/bin/python" "${root}/script.py" "$@"
+if ! [ -e venv/touchfile -a venv/touchfile -nt requirements.txt ]; then
+  pip install -r requirements.txt
+  touch venv/touchfile
+fi
+
+exec python script.py "$@"
