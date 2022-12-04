@@ -14,21 +14,29 @@ if ! [ -e venv/touchfile -a venv/touchfile -nt requirements.txt ]; then
   touch venv/touchfile
 fi
 
-readonly files=( ./*.py )
-readonly pylintflags=( --rcfile=.pylintrc )
+declare -a pylint_argv
+declare -a mypy_argv
 
-declare -i pylintrc=0
-echo "+ pylint ${pylintflags[*]} ${files[*]}" >&2
-pylint "${pylintflags[@]}" "${files[@]}" || pylintrc=$?
-echo "rc=${pylintrc}" >&2
+if [ -n "${CI:+isset}" ]; then
+  pylint_argv=( pylint --rcfile=.pylintrc-ci *.py )
+  mypy_argv=( mypy --config-file=.mypy.ci.ini *.py )
+else
+  pylint_argv=( pylint --rcfile=.pylintrc *.py )
+  mypy_argv=( mypy --config-file=.mypy.ini *.py )
+fi
 
-declare -i mypyrc=0
-echo "+ mypy ${files[*]}" >&2
-mypy "${files[@]}" || mypyrc=$?
-echo "rc=${mypyrc}" >&2
+declare -i pylint_rc=0
+echo "+ ${pylint_argv[*]}" >&2
+"${pylint_argv[@]}" || pylint_rc=$?
+echo "rc=${pylint_rc}" >&2
+
+declare -i mypy_rc=0
+echo "+ ${mypy_argv[*]}" >&2
+"${mypy_argv[@]}" || mypy_rc=$?
+echo "rc=${mypy_rc}" >&2
 
 declare -i myrc=1
-if [ $pylintrc -eq 0 -a $mypyrc -eq 0 ]; then
+if [ $pylint_rc -eq 0 -a $mypy_rc -eq 0 ]; then
   myrc=0
 fi
 exit $myrc
