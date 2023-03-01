@@ -1,4 +1,4 @@
-astroid==2.12.13
+astroid==2.14.2
 certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==2.1.1
