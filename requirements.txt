@@ -1,7 +1,7 @@
 astroid==2.12.13
 certifi==2022.12.7
 cffi==1.15.1
-charset-normalizer==2.1.1
+charset-normalizer==3.1.0
 Deprecated==1.2.13
 dill==0.3.6
 idna==3.4
